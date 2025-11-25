@@ -14,7 +14,7 @@ collection = db['student_pred']
 
 def load_model():
     """Load the trained model, scaler, and label encoder from a pickle file."""
-    with open("student_final_model.pkl", 'rb') as file:  # Corrected typo from 'student_final_mdel.pkl'
+    with open("student_final_mdel.pkl", 'rb') as file:  # Corrected typo from 'student_final_mdel.pkl'
         model, scaler, le = pickle.load(file)
         return model, scaler, le
     
