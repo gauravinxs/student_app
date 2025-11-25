@@ -61,7 +61,7 @@ def main():
             user_data['Extracurricular Activities'] = np.array([1]).tolist()  # Example conversion, replace with actual transformation
 
             collection.insert_one(user_data)  # Insert into MongoDB
-            st.success(f"Your predicted result is {result[0]:.2f}")  # Formatting the output
+            st.success(f"Your predicted result is {result[0][0]:.2f}")
         except Exception as e:
             st.error(f"An error occurred: {e}")
         
