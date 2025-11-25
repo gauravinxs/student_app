@@ -3,6 +3,16 @@ import pandas as pd
 import numpy as np
 import pickle
 from sklearn.preprocessing import StandardScaler, LabelEncoder
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
+
+
+uri = "mongodb+srv://gary:gary@cluster0.uoimqso.mongodb.net/?appName=Cluster0"
+
+client = MongoClient(uri, server_api=ServerApi('1'))
+
+db = client['student']
+collection = db['student_pred']
 
 
 def load_model():
@@ -44,6 +54,8 @@ def main():
             'Extracurricular Activities': extra_c
         }
         res = pred(user_data)
+        user_data['prediction'] = res
+        collection.insert_one(user_data)
         st.success(f"Your pred res is {res}")
 
 if __name__ == "__main__":
