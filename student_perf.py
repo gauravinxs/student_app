@@ -55,12 +55,17 @@ def main():
 
         try:
             result = predict(user_data)
-            # Convert prediction to standard data types
-            user_data['prediction'] = result.tolist()  # Convert array to list
+            # Convert arrays to lists before inserting into MongoDB
+            user_data['prediction'] = result.tolist()  # Convert prediction to list
+            # Convert any NumPy array to a list
+            user_data['Extracurricular Activities'] = np.array([1]).tolist()  # Example conversion, replace with actual transformation
+
             collection.insert_one(user_data)  # Insert into MongoDB
-            st.success(f"Your predicted result is {result[0]:.2f}")  # Format output for display
+            st.success(f"Your predicted result is {result[0]:.2f}")  # Formatting the output
         except Exception as e:
             st.error(f"An error occurred: {e}")
+        
+
 
 if __name__ == "__main__":
     main()
